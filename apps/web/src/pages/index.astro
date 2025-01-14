@@ -1,17 +1,6 @@
 ---
 import '../styles/global.css'
 import Content from '../content/index.mdx'
-
-import { applyCursors } from 'cursor-js'
-
-applyCursors([
-  {
-    cursorPath: '/cursors/arrow.png',
-    hotspotX: 16,
-    hotspotY: 16,
-    defaultCursor: true,
-  },
-])
 ---
 
 <html lang='en'>
@@ -28,7 +17,7 @@ applyCursors([
     >
       <h1 class='text-4xl font-bold tracking-tight'>Cursor.js</h1>
       <p class='mt-1 tracking-tight text-neutral-600 dark:text-neutral-400'>
-        Fast, composable, and headless custom cursors.
+        Customizable and framework-agnostic cursor (&#x3c;1kB)
       </p>
       <div class='mt-4 flex items-center gap-x-2'>
         <a
@@ -98,6 +87,9 @@ applyCursors([
       </div>
     </footer>
   </body>
+  <script is:inline type='module'>
+    import initCursor from 'cursor-js'
+  </script>
   <script>
     const selectElement = document.getElementById('theme')
 

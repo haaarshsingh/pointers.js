@@ -2,95 +2,41 @@ import Buttons from "../components/Buttons.astro";
 
 ## Installation
 
-```
+```js
 <script src="https://cdn.jsdelivr.net/npm/cursor-js@1.0.0/dist/index.min.js"></script>
 ```
 
-```
-npm install cursor-js
+```sh
+npm install cursor-js # or @react/cursor-js
 ```
 
-## Quick Start
+## Usage
 
-Inside a script tag, create a configuration object for your cursors. For a full list of options, check out the [API Reference](https://github.com/haaarshsingh/react-pointers?tab=readme-ov-file#API-Reference).
+Initialize the cursor with the following function. Passing config object is optional. Check out the [API Reference](#) for all config options.
 
 ```js
-const config = [
-  {
-    selectors: ["a", "button", ".custom-button"], // Apply to these selectors
-    path: "/pointer.png", // Path to pointer image
-    hotspotX: 16, // Hotspot X coordinate (optional, default: 0)
-    hotspotY: 16, // Hotspot Y coordinate (optional, default: 0)
-    fallback: "pointer", // Fallback cursor style (optional, default: "auto")
-  },
-];
-```
-
-Pass the config object inside the `applyCursors` function:
-
-```js
-applyCursors(config);
+const config = {
+  /* ... */
+};
+initCursor(config);
 ```
 
 ## React
 
-Wrap your application within the Provider:
+Somewhere in the root of your project:
 
 ```jsx
-import { CursorProvider } from "cursor-js";
+import Cursor from "cursor-js";
 
 // ...
 
-function App() {
-  return (
-    <CursorProvider>
-
-    </CursorProvider>;
-  )
-}
-```
-
-Add the `Pointer` component somewhere in your application and pass in the config.
-
-```jsx
-const config = [
-  /* ... */
-];
-return <Pointer config={config} />;
-```
-
-## Use Pointer
-
-The `usePointer()` hook allows programmatic control of the pointers:
-
-```jsx
-import { useState } from "react";
-import { usePointer } from "react-pointers";
-
-function App() {
-  const [enabled, setEnabled] = useState(false);
-
-  usePointer(
-    ".drag",
-    enabled ? "/pointers/hand.png" : null, // Pointer path based on state
-    16,
-    16,
-    "pointer",
-  );
-
-  return (
-    <div>
-      <button onClick={() => setEnabled(!enabled)}>
-        {enabled ? "Disable" : "Enable"} Custom Pointer
-      </button>
-      <div className="drag">Drag me</div>
-    </div>
-  );
+function Layout() {
+  return <Cursor />;
 }
 ```
 
 ## Examples
 
-Hover over these buttons to see custom pointer actions:
+The default states configured on the cursor:
 
 <Buttons />

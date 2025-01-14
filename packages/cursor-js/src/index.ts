@@ -1,39 +1,38 @@
-import type { Config } from './types'
+export default (() => {
+  interface CursorElement extends HTMLElement {
+    style: CSSStyleDeclaration;
+  }
 
-/**
- * Apply custom cursors to elements.
- * @param config Array of cursor configurations
- */
-export const applyCursors = (config: Config[]): void => {
-  config.forEach(
-    ({
-      selectors,
-      cursorPath,
-      hotspotX = 0,
-      hotspotY = 0,
-      fallback = 'auto',
-    }) => {
-      if (!Array.isArray(selectors) || selectors.length === 0) {
-        console.warn('The "selector" must be a non-empty array of strings.')
-        return
-      }
+  function initCursor(selectors: string[]): void {
+    const cursor: CursorElement = document.createElement('div') as CursorElement;
+    cursor.style.position = 'absolute';
+    cursor.style.width = '20px';
+    cursor.style.height = '20px';
+    cursor.style.backgroundColor = 'black';
+    cursor.style.borderRadius = '50%';
+    cursor.style.pointerEvents = 'none';
+    cursor.style.transition = 'transform 0.2s ease';
+    document.body.appendChild(cursor);
 
-      const cursorUrl = `${cursorPath} ${hotspotX} ${hotspotY}`
+    document.addEventListener('mousemove', (e: MouseEvent) => {
+      cursor.style.left = `${e.clientX - cursor.offsetWidth / 2}px`;
+      cursor.style.top = `${e.clientY - cursor.offsetHeight / 2}px`;
+    });
 
-      selectors.forEach((s) => {
-        const elements = document.querySelectorAll(s)
+    selectors.forEach((selector: string) => {
+      const elements = document.querySelectorAll(selector);
 
-        if (!elements.length) {
-          console.warn(`No elements match the selector: "${s}"`)
-          return
-        }
+      elements.forEach((element: HTMLElement) => {
+        element.addEventListener('mouseenter', () => {
+          cursor.style.transform = 'scale(3)';
+        });
+        element.addEventListener('mouseleave', () => {
+          cursor.style.transform = 'scale(1)';
+        });
+      });
+    });
+  }
 
-        elements.forEach((el) => {
-          ;(el as HTMLElement).style.cursor = `url(${cursorUrl}), ${fallback}`
-        })
-      })
-    }
-  )
-}
-
-export type { Config } from './types'
+  // @ts-expect-error - Expose the function to the window object
+  window.initCursor = initCursor;
+})();

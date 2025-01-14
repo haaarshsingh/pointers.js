@@ -21,6 +21,10 @@
   "engines": {
     "node": ">=10"
   },
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs"
+  },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
     "build": "microbundle-crl --no-compress --format modern,cjs --css-modules false",
