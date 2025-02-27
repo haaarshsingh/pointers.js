@@ -48,7 +48,7 @@ p > a {
 }
 
 .copy-code {
-  @apply absolute right-0 top-0 m-2 flex h-fit w-fit items-center justify-center rounded-lg border border-neutral-200 bg-neutral-200/50 p-2 text-neutral-800 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-50;
+  @apply absolute top-0 right-0 m-2 flex h-fit w-fit items-center justify-center rounded-lg border border-neutral-200 bg-neutral-200/50 p-2 text-neutral-800 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-50;
 }
 
 html.dark .astro-code,

@@ -18,6 +18,7 @@ Initialize the cursor with the following function. Passing config object is opti
 const config = {
   /* ... */
 };
+
 initCursor(config);
 ```
 
@@ -26,12 +27,14 @@ initCursor(config);
 Somewhere in the root of your project:
 
 ```jsx
-import Cursor from "cursor-js";
-
-// ...
+import { initCursor } from "cursor-js";
 
 function Layout() {
-  return <Cursor />;
+  useEffect(() => {
+    initCursor();
+  }, []);
+
+  /* ... */
 }
 ```
 

@@ -9,10 +9,7 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [sectionize],
     shikiConfig: {
-      themes: {
-        light: "github-light",
-        dark: "github-dark",
-      },
+      themes: { light: "github-light", dark: "github-dark" },
     },
   },
 });

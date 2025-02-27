@@ -13,7 +13,7 @@ import Content from '../content/index.mdx'
   </head>
   <body>
     <header
-      class='mb-24 mt-60 flex w-full flex-col items-center justify-center'
+      class='mt-60 mb-24 flex w-full flex-col items-center justify-center'
     >
       <h1 class='text-4xl font-bold tracking-tight'>Cursor.js</h1>
       <p class='mt-1 tracking-tight text-neutral-600 dark:text-neutral-400'>
@@ -23,15 +23,15 @@ import Content from '../content/index.mdx'
         <a
           href='#installation'
           draggable='false'
-          class='block select-none rounded-lg bg-neutral-950 px-8 py-3 text-sm font-medium text-neutral-50 hover:bg-neutral-900 active:bg-neutral-800 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-50/90 dark:active:bg-neutral-50/75'
+          class='block rounded-lg bg-neutral-950 px-8 py-3 text-sm font-medium text-neutral-50 select-none hover:bg-neutral-900 active:bg-neutral-800 dark:bg-neutral-50 dark:text-neutral-950 dark:hover:bg-neutral-50/90 dark:active:bg-neutral-50/75'
           >Get Started</a
         >
         <a
-          href='https://github.com/haaarshsingh/react-pointers'
+          href='https://github.com/haaarshsingh/cursor.js'
           target='_blank'
           rel='noreferrer'
           draggable='false'
-          class='flex select-none items-center gap-x-1 rounded-lg bg-neutral-200 px-8 py-3 text-sm text-neutral-950 hover:bg-neutral-300/50 active:bg-neutral-300/75 dark:bg-neutral-800 dark:text-neutral-50 dark:hover:bg-neutral-700/75 dark:active:bg-neutral-700/50'
+          class='flex items-center gap-x-1 rounded-lg bg-neutral-200 px-8 py-3 text-sm text-neutral-950 select-none hover:bg-neutral-300/50 active:bg-neutral-300/75 dark:bg-neutral-800 dark:text-neutral-50 dark:hover:bg-neutral-700/75 dark:active:bg-neutral-700/50'
         >
           <svg
             stroke='currentColor'
@@ -68,7 +68,7 @@ import Content from '../content/index.mdx'
           />
           <span class='text-sm'
             >Built by <a
-              href='https://harshsingh.xyz'
+              href='https://harshsingh.me'
               class='font-medium hover:underline'>Harsh Singh</a
             ></span
           >
@@ -87,10 +87,10 @@ import Content from '../content/index.mdx'
       </div>
     </footer>
   </body>
-  <script is:inline type='module'>
-    import initCursor from 'cursor-js'
-  </script>
   <script>
+    import { initCursor } from 'cursor-js'
+    initCursor({ pointer: ['a', 'button:not(.loading,.move)'] })
+
     const selectElement = document.getElementById('theme')
 
     function setTheme(theme: string) {

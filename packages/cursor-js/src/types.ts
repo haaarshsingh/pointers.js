@@ -1,30 +1,18 @@
-export type Config = {
-  /**
-   * The selector(s) to apply the custom cursor to
-   */
-  selectors?: string[]
-  /**
-   * The image path of the cursor
-   */
-  cursorPath: string
-  /**
-   * The width of the cursor's hotspot
-   * @default 0
-   */
-  hotspotX?: number
-  /**
-   * The height of the cursor's hotspot
-   * @default 0
-   */
-  hotspotY?: number
-  /**
-   * The fallback CSS cursor
-   * @default auto
-   */
-  fallback?: string
-  /**
-   * Set cursor to be the default cursor
-   * @default false
-   */
-  defaultCursor?: boolean
-}
+export type Config = Partial<{
+  size: Size
+  color: Color
+  classNames: ClassNames
+  speed: number
+  scale: number
+  pointer: Array<string>
+  move: Array<string>
+  loading: Array<string>
+  zoomIn: Array<string>
+  zoomOut: Array<string>
+}>
+
+export type Size = { outer: number; inner: number }
+
+export type Color = { primary: string; accent: string }
+
+export type ClassNames = { cursor: string; ring: string; spinner: string }

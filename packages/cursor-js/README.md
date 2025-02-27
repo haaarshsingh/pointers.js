@@ -1,4 +1,4 @@
-# cursor-js
+# cursor.js
 
 To install dependencies:
 
