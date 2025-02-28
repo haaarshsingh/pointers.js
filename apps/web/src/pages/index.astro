@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css'
-import Content from '../content/index.mdx'
+import Content from '../components/index.mdx'
 ---
 
 <html lang='en'>
@@ -50,14 +50,14 @@ import Content from '../content/index.mdx'
       </div>
     </header>
     <main class='flex justify-center'>
-      <div class='w-[620px]'>
+      <div class='w-[90vw] sm:w-[620px]'>
         <Content />
       </div>
     </main>
     <footer
       class='mt-24 flex justify-center border-t border-t-neutral-200 bg-neutral-100/75 py-8 dark:border-t-neutral-900 dark:bg-neutral-900/25'
     >
-      <div class='flex w-[50vw] items-center justify-between'>
+      <div class='flex w-[95vw] items-center justify-between sm:w-[50vw]'>
         <div class='flex items-center gap-x-1.5'>
           <img
             src='/headshot.webp'

@@ -23,11 +23,11 @@ const examples = [
 ]
 ---
 
-<div class='mt-2 flex items-center gap-x-2'>
+<div class='mt-2 table'>
   {
     examples.map((example) => (
       <button
-        class={`${example.className} rounded-md border border-neutral-200 bg-neutral-100/50 px-4 py-2 text-sm dark:border-neutral-800 dark:bg-neutral-900`}
+        class={`${example.className} mr-2 mb-2 rounded-md border border-neutral-200 bg-neutral-100/50 px-4 py-2 text-sm dark:border-neutral-800 dark:bg-neutral-900`}
       >
         {example.label}
       </button>
