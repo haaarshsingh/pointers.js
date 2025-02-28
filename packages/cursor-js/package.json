@@ -1,5 +1,7 @@
 {
-  "name": "cursor-js",
+  "name": "cursor.js",
+  "version": "1.0.0",
+  "private": false,
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
