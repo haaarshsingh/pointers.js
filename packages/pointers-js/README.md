@@ -1,7 +1,7 @@
 ## Installation
 
 ```js
-<script src="https://cdn.jsdelivr.net/npm/pointers-js@1.0.0/dist/index.min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/pointers-js@1.0.0/dist/index.min.js'></script>
 ```
 
 ```sh
@@ -15,9 +15,9 @@ Initialize the cursor with the following function. Passing config object is opti
 ```js
 const config = {
   /* ... */
-};
+}
 
-initCursor(config);
+initCursor(config)
 ```
 
 ## React
@@ -25,12 +25,12 @@ initCursor(config);
 Somewhere in the root of your project:
 
 ```jsx
-import { initCursor } from "pointers-js";
+import { initCursor } from 'pointers-js'
 
 function Layout() {
   useEffect(() => {
-    initCursor();
-  }, []);
+    initCursor()
+  }, [])
 
   /* ... */
 }
@@ -38,6 +38,4 @@ function Layout() {
 
 ## Examples
 
-The default states configured on the cursor:
-
-<Buttons />
+The default states configured on the cursor can be on [the website](https://pointers.js.org).

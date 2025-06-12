@@ -1,10 +1,13 @@
 {
-  "name": "cursor.js",
+  "name": "pointers-js",
   "version": "1.0.0",
   "private": false,
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "rollup -c rollup.config.mjs",
     "dev": "rollup -c rollup.config.mjs --watch"

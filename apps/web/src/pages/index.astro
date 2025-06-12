@@ -9,13 +9,13 @@ import Content from '../components/index.mdx'
     <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
     <meta name='viewport' content='width=device-width' />
     <meta name='generator' content={Astro.generator} />
-    <title>Cursor.js</title>
+    <title>Pointers.js</title>
   </head>
   <body>
     <header
       class='mt-60 mb-24 flex w-full flex-col items-center justify-center'
     >
-      <h1 class='text-4xl font-bold tracking-tight'>Cursor.js</h1>
+      <h1 class='text-4xl font-bold tracking-tight'>Pointers.js</h1>
       <p class='mt-1 tracking-tight text-neutral-600 dark:text-neutral-400'>
         Customizable and framework-agnostic cursor (&#x3c;1kB)
       </p>
@@ -88,7 +88,7 @@ import Content from '../components/index.mdx'
     </footer>
   </body>
   <script>
-    import { initCursor } from 'cursor-js'
+    import { initCursor } from 'pointers-js'
     initCursor({ pointer: ['a', 'button:not(.loading,.move)'] })
 
     const selectElement = document.getElementById('theme')

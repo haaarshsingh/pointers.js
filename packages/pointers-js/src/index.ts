@@ -1,6 +1,6 @@
 import type { Config, Size } from './types'
 
-class CursorJS {
+class PointersJS {
   private cursor: HTMLElement = document.createElement('div')
   private ring: HTMLElement = document.createElement('div')
 
@@ -288,5 +288,5 @@ class CursorJS {
 }
 
 export function initCursor(config?: Config) {
-  new CursorJS(config)
+  new PointersJS(config)
 }

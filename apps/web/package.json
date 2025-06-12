@@ -16,7 +16,7 @@
     "@astrojs/tailwind": "^5.1.2",
     "@tailwindcss/vite": "^4.0.9",
     "astro": "^4.16.13",
-    "cursor-js": "workspace:*",
+    "pointers-js": "workspace:*",
     "remark-sectionize": "^2.1.0",
     "tailwindcss": "^4.0.9"
   },
