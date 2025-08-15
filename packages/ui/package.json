@@ -1,20 +1,14 @@
 {
-  "name": "web",
-  "version": "0.1.0",
-  "type": "module",
+  "name": "@repo/ui",
+  "version": "0.0.0",
   "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack --port 3000",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint --max-warnings 0",
-    "check-types": "tsc --noEmit"
+  "exports": {
+    "./*": "./src/*.tsx"
   },
-  "dependencies": {
-    "@repo/ui": "workspace:*",
-    "next": "^15.4.2",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+  "scripts": {
+    "lint": "eslint . --max-warnings 0",
+    "generate:component": "turbo gen react-component",
+    "check-types": "tsc --noEmit"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
@@ -24,5 +18,9 @@
     "@types/react-dom": "19.1.1",
     "eslint": "^9.33.0",
     "typescript": "5.9.2"
+  },
+  "dependencies": {
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }
