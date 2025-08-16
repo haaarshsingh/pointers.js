@@ -1,7 +1,7 @@
 {
   "name": "qursor",
-  "version": "0.0.0",
-  "description": "Production-ready custom cursor React library",
+  "version": "0.0.1",
+  "description": "Plug n' play cursors for React.",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
