@@ -36,7 +36,7 @@ Requirements: Node >= 18.
 
 ```bash
 git clone https://github.com/harshsingh/Qursor
-cd Qursor
+cd qursor
 bun install
 
 # develop demo app and packages
