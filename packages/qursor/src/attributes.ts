@@ -29,7 +29,6 @@ const handleMouseEnter = (e: Event) => {
       }
     }
 
-    // Store current variant for restoration
     variantStack.push(currentContext.variant);
     currentContext.setVariant(variant, meta);
   }
@@ -67,14 +66,12 @@ export const createAttributeManager = (): AttributeManager => {
   return {
     init: (cursorContext: CursorContextValue) => {
       if (isInitialized) {
-        // Update context if already initialized
         currentContext = cursorContext;
         return;
       }
 
       currentContext = cursorContext;
 
-      // Use event delegation for performance
       document.addEventListener("mouseover", (e) => {
         const target = e.target as Element;
         if (target.hasAttribute("data-cursor")) {
@@ -110,5 +107,4 @@ export const createAttributeManager = (): AttributeManager => {
   };
 };
 
-// Global instance for easy access
 export const attributeManager = createAttributeManager();

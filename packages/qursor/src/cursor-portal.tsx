@@ -22,7 +22,6 @@ export function CursorPortal({
   const elementRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number>();
 
-  // Memoize the variant component to prevent unnecessary re-renders
   const VariantComponent = useMemo(
     () => variants[state.variant],
     [variants, state.variant]
@@ -36,12 +35,10 @@ export function CursorPortal({
     const updatePosition = () => {
       if (!element) return;
 
-      // Use transform3d for hardware acceleration
       element.style.transform = `translate3d(${state.x}px, ${state.y}px, 0)`;
       element.style.opacity = state.isHidden ? "0" : "1";
     };
 
-    // Use requestAnimationFrame for smooth updates
     const scheduleUpdate = () => {
       if (rafRef.current) {
         cancelAnimationFrame(rafRef.current);
@@ -86,6 +83,5 @@ export function CursorPortal({
     </div>
   );
 
-  // Portal to document.body for proper z-index stacking
   return createPortal(portalContent, document.body);
 }

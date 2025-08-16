@@ -48,7 +48,6 @@ export function CursorProvider({
   const [isEnabled, setIsEnabled] = useState(finalConfig.enabled);
   const [variantMap, setVariantMap] = useState<CursorVariantMap>(variants);
 
-  // Use refs to avoid re-renders on mouse movement
   const stateRef = useRef<CursorState>({
     x: 0,
     y: 0,
@@ -65,11 +64,9 @@ export function CursorProvider({
   const targetPositionRef = useRef({ x: 0, y: 0 });
   const isInputFocusedRef = useRef(false);
 
-  // Handle SSR and mounting
   useEffect(() => {
     setIsMounted(true);
 
-    // Check for reduced motion preference
     if (finalConfig.reducedMotionRespect && typeof window !== "undefined") {
       const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
       if (mediaQuery.matches) {
@@ -86,14 +83,12 @@ export function CursorProvider({
     }
   }, [finalConfig.reducedMotionRespect, finalConfig.enabled]);
 
-  // Handle touch detection
   useEffect(() => {
     if (!finalConfig.disableOnTouch) return;
 
     const handleTouchStart = () => setIsEnabled(false);
     const handleMouseMove = () => setIsEnabled(finalConfig.enabled);
 
-    // Detect if device has coarse pointer (touch)
     if (window.matchMedia("(pointer: coarse)").matches) {
       setIsEnabled(false);
     }
@@ -107,7 +102,6 @@ export function CursorProvider({
     };
   }, [finalConfig.disableOnTouch, finalConfig.enabled]);
 
-  // Handle input focus detection for cursor fallback
   useEffect(() => {
     const handleFocusIn = (e: FocusEvent) => {
       const target = e.target as Element;
@@ -160,7 +154,6 @@ export function CursorProvider({
 
       updateState({ x: newX, y: newY });
 
-      // Continue animation if not close enough to target
       if (Math.abs(newX - target.x) > 0.5 || Math.abs(newY - target.y) > 0.5) {
         rafRef.current = requestAnimationFrame(animatePosition);
       }
@@ -169,7 +162,6 @@ export function CursorProvider({
     }
   }, [isEnabled, finalConfig.trailing, lerp, updateState]);
 
-  // Mouse tracking
   useEffect(() => {
     if (!isMounted || !isEnabled) return;
 
@@ -204,7 +196,6 @@ export function CursorProvider({
     };
   }, [isMounted, isEnabled, animatePosition, updateState]);
 
-  // CSS cursor hiding
   useEffect(() => {
     if (!isMounted) return;
 
@@ -233,7 +224,6 @@ export function CursorProvider({
     (variant: string, options?: PushVariantOptions) => {
       const { timeout, meta } = options || {};
 
-      // Clear existing timeout for this variant if any
       const existingIndex = variantStackRef.current.findIndex(
         (item) => item.variant === variant
       );
@@ -245,22 +235,18 @@ export function CursorProvider({
         variantStackRef.current.splice(existingIndex, 1);
       }
 
-      // Push current state to stack
       variantStackRef.current.push({
         variant: stateRef.current.variant,
         meta: stateRef.current.meta,
       });
 
-      // Set new variant
       updateState({ variant, meta: meta || {} });
 
-      // Set timeout if specified
       if (timeout && timeout > 0) {
         const timeoutId = window.setTimeout(() => {
           popVariant();
         }, timeout);
 
-        // Update the stack item with timeout ID
         const stackItem =
           variantStackRef.current[variantStackRef.current.length - 1];
         if (stackItem) {
@@ -316,7 +302,6 @@ export function CursorProvider({
     ]
   );
 
-  // Initialize attribute manager with current context
   useEffect(() => {
     if (isMounted && isEnabled) {
       attributeManager.init(contextValue);

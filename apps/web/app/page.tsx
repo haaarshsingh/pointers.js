@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import { useCursor } from "custom-cursors";
+import { useCursor } from "qursor";
 import { TextScramble } from "../components/text-scramble";
 import Image from "next/image";
 import { motion } from "motion/react";

@@ -1,6 +1,6 @@
 "use client";
 
-import type { CursorComponentProps } from "custom-cursors";
+import type { CursorComponentProps } from "qursor";
 
 export const CustomCursor = ({ isHidden, variant }: CursorComponentProps) => {
   const isHover = variant === "hover";

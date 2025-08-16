@@ -42,14 +42,11 @@ describe("CursorTarget", () => {
 
     const button = screen.getByTestId("hover-button");
 
-    // Initially default
     expect(screen.getByTestId("current-variant")).toHaveTextContent("default");
 
-    // Hover should change to hover variant
     fireEvent.mouseEnter(button);
     expect(screen.getByTestId("current-variant")).toHaveTextContent("hover");
 
-    // Leave should restore to default
     fireEvent.mouseLeave(button);
     expect(screen.getByTestId("current-variant")).toHaveTextContent("default");
   });
@@ -63,14 +60,11 @@ describe("CursorTarget", () => {
 
     const button = screen.getByTestId("hover-button");
 
-    // Initially default
     expect(screen.getByTestId("current-variant")).toHaveTextContent("default");
 
-    // Focus should change to hover variant
     fireEvent.focus(button);
     expect(screen.getByTestId("current-variant")).toHaveTextContent("hover");
 
-    // Blur should restore to default
     fireEvent.blur(button);
     expect(screen.getByTestId("current-variant")).toHaveTextContent("default");
   });
@@ -84,10 +78,8 @@ describe("CursorTarget", () => {
 
     const disabledButton = screen.getByTestId("disabled-button");
 
-    // Initially default
     expect(screen.getByTestId("current-variant")).toHaveTextContent("default");
 
-    // Hover on disabled target should not change variant
     fireEvent.mouseEnter(disabledButton);
     expect(screen.getByTestId("current-variant")).toHaveTextContent("default");
 

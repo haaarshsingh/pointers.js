@@ -32,7 +32,6 @@ describe("CursorProvider", () => {
   };
 
   beforeEach(() => {
-    // Reset document state
     document.documentElement.classList.remove("cursor-none");
   });
 
@@ -64,14 +63,11 @@ describe("CursorProvider", () => {
       </CursorProvider>
     );
 
-    // Initially default
     expect(screen.getByTestId("current-variant")).toHaveTextContent("default");
 
-    // Push loading variant
     fireEvent.click(screen.getByText("Push Loading"));
     expect(screen.getByTestId("current-variant")).toHaveTextContent("loading");
 
-    // Pop back to default
     fireEvent.click(screen.getByText("Pop Variant"));
     expect(screen.getByTestId("current-variant")).toHaveTextContent("default");
   });
@@ -85,11 +81,9 @@ describe("CursorProvider", () => {
       </CursorProvider>
     );
 
-    // Push with timeout
     fireEvent.click(screen.getByText("Push Loading"));
     expect(screen.getByTestId("current-variant")).toHaveTextContent("loading");
 
-    // Fast-forward time
     act(() => {
       vi.advanceTimersByTime(100);
     });

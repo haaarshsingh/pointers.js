@@ -17,18 +17,15 @@ export function CursorTarget({
   const handleMouseEnter = useCallback(() => {
     if (disabled) return;
 
-    // Store the original variant to restore later
-    originalVariantRef.current = variant; // This should actually get the current variant
+    originalVariantRef.current = variant;
     originalMetaRef.current = meta || {};
 
-    // Push the new variant onto the stack
     pushVariant(variant, { meta });
   }, [disabled, variant, meta, pushVariant]);
 
   const handleMouseLeave = useCallback(() => {
     if (disabled) return;
 
-    // Pop back to the previous variant
     popVariant();
   }, [disabled, popVariant]);
 

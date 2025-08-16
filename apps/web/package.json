@@ -13,7 +13,7 @@
   "dependencies": {
     "@tabler/icons-react": "^3.34.1",
     "@tailwindcss/postcss": "^4.1.12",
-    "custom-cursors": "*",
+    "qursor": "*",
     "motion": "^12.23.12",
     "next": "^15.4.2",
     "postcss": "^8.5.6",

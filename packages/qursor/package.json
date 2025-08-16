@@ -1,5 +1,5 @@
 {
-  "name": "custom-cursors",
+  "name": "qursor",
   "version": "0.0.0",
   "description": "Production-ready custom cursor React library",
   "type": "module",
