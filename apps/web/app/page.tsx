@@ -1,102 +1,177 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+"use client";
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
+import { useEffect } from "react";
+import { useCursor } from "custom-cursors";
+import { TextScramble } from "../components/text-scramble";
+import Image from "next/image";
+import { motion } from "motion/react";
 
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
+export default function Page() {
+  const { setVariant } = useCursor();
+
+  useEffect(() => {
+    const interactiveElements = document.querySelectorAll("button, a");
+    interactiveElements.forEach((element) => {
+      element.setAttribute("data-cursor", "hover");
+
+      const children = element.querySelectorAll("*");
+      children.forEach((child) => {
+        // @ts-expect-error - child is an Element
+        child.style.pointerEvents = "none";
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    const resetCursor = () => {
+      setVariant("default");
+    };
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "visible") {
+        resetCursor();
+      }
+    };
+
+    const handleFocus = () => {
+      resetCursor();
+    };
+
+    const handleLoad = () => {
+      resetCursor();
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    window.addEventListener("focus", handleFocus);
+    window.addEventListener("load", handleLoad);
+
+    resetCursor();
+
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      window.removeEventListener("focus", handleFocus);
+      window.removeEventListener("load", handleLoad);
+    };
+  }, [setVariant]);
 
   return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
-
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
+    <div className="flex flex-col items-center justify-center h-screen gap-y-3 relative">
+      <div className="mesh-bg opacity-10">
+        <svg
+          className="mesh-gradient mesh-gradient--pink"
+          viewBox="0 0 600 600"
+        >
+          <defs>
+            <linearGradient id="pinkGradient" gradientTransform="rotate(45)">
+              <stop offset="0%" stopColor="rgba(255,182,193,0.7)" />
+              <stop offset="100%" stopColor="rgba(255,105,180,0.7)" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M421.5,341.5Q385,433,297,456.5Q209,480,138.5,411Q68,342,90,254.5Q112,167,201.5,131Q291,95,366,139.5Q441,184,446.5,266Q452,348,421.5,341.5Z"
+            fill="url(#pinkGradient)"
+          />
+        </svg>
+        <svg
+          className="mesh-gradient mesh-gradient--purple"
+          viewBox="0 0 600 600"
+        >
+          <defs>
+            <linearGradient id="purpleGradient" gradientTransform="rotate(45)">
+              <stop offset="0%" stopColor="rgba(221,160,221,0.6)" />
+              <stop offset="100%" stopColor="rgba(186,85,211,0.6)" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M505,344.5Q484,439,386,460Q288,481,207.5,439.5Q127,398,98.5,315Q70,232,142,176.5Q214,121,305,103.5Q396,86,467,142Q538,198,523,286.5Q508,375,505,344.5Z"
+            fill="url(#purpleGradient)"
+          />
+        </svg>
+        <svg
+          className="mesh-gradient mesh-gradient--blue"
+          viewBox="0 0 600 600"
+        >
+          <defs>
+            <linearGradient id="blueGradient" gradientTransform="rotate(45)">
+              <stop offset="0%" stopColor="rgba(135,206,235,0.6)" />
+              <stop offset="100%" stopColor="rgba(173,216,230,0.6)" />
+            </linearGradient>
+          </defs>
+          <path
+            d="M393,461Q303,522,204.5,494.5Q106,467,92.5,360.5Q79,254,154.5,185.5Q230,117,329.5,105.5Q429,94,471.5,180Q514,266,451.5,323Q389,380,393,461Z"
+            fill="url(#blueGradient)"
+          />
+        </svg>
+      </div>
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <Image
+          src="/hero-graphic.png"
+          alt="Logo"
+          width={128}
+          height={128}
+          className="border border-neutral-800 rounded-3xl mb-3 shadow-xl"
         />
-        <ol>
-          <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.com/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-        <Button appName="web" className={styles.secondary}>
-          Open alert
-        </Button>
-      </main>
-      <footer className={styles.footer}>
+      </motion.div>
+      <motion.h1
+        className="text-4xl"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+      >
+        Welcome to <strong>Qursor.</strong>
+      </motion.h1>
+      <motion.div
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.25 }}
+      >
+        <TextScramble className="text-muted-foreground font-mono text-sm uppercase">
+          Plug N' Play Cursors for React
+        </TextScramble>
+      </motion.div>
+      <motion.hr
+        className="w-36 border-border my-8"
+        initial={{ width: 0 }}
+        animate={{ width: 144 }}
+        transition={{ delay: 0.75 }}
+      />
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.75 }}
+        className="flex"
+      >
         <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+          href="https://github.com/haaarshsingh/qursor"
           target="_blank"
           rel="noopener noreferrer"
+          draggable={false}
+          data-cursor="hover"
+          className="group active:scale-[.98] text-sm inline-flex items-center rounded-full hover:bg-white/10 pl-5 pr-6 py-2.5 transition"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
+          Get Started
+          <svg
+            className="ml-2 -mr-1 stroke-white stroke-2"
+            fill="none"
+            width="10"
+            height="10"
+            viewBox="0 0 10 10"
+            aria-hidden="true"
+          >
+            <path
+              className="opacity-0 transition group-hover:opacity-100"
+              d="M0 5h7"
+            ></path>
+            <path
+              className="transition group-hover:translate-x-[3px]"
+              d="M1 1l4 4-4 4"
+            ></path>
+          </svg>
         </a>
-        <a
-          href="https://turborepo.com?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.com →
-        </a>
-      </footer>
+      </motion.div>
     </div>
   );
 }

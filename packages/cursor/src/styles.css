@@ -1,0 +1,37 @@
+/* Custom cursor styles */
+.cursor-none,
+.cursor-none * {
+  cursor: none !important;
+}
+
+/* Base cursor portal styles */
+.cursor-portal {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .cursor-portal {
+    display: none !important;
+  }
+
+  .cursor-none,
+  .cursor-none * {
+    cursor: auto !important;
+  }
+}
+
+/* Touch device support */
+@media (pointer: coarse) {
+  .cursor-portal {
+    display: none !important;
+  }
+
+  .cursor-none,
+  .cursor-none * {
+    cursor: auto !important;
+  }
+}

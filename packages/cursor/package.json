@@ -1,0 +1,57 @@
+{
+  "name": "custom-cursors",
+  "version": "0.0.0",
+  "description": "Production-ready custom cursor React library",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "check-types": "tsc --noEmit",
+    "lint": "eslint src/",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "*",
+    "@repo/typescript-config": "*",
+    "@testing-library/react": "^16.1.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "eslint": "^9.33.0",
+    "jsdom": "^26.0.1",
+    "tsup": "^8.5.0",
+    "typescript": "5.9.2",
+    "vitest": "^2.1.8"
+  },
+  "keywords": [
+    "react",
+    "cursor",
+    "pointer",
+    "ui",
+    "typescript"
+  ],
+  "sideEffects": [
+    "./dist/styles.css"
+  ]
+}
